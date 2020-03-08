@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="no-js" dir="ltr" lang="en-gb">
+  <head>
+    <!-- initial setup -->
+    <meta charset="utf-8" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Yuuto flow | Yuuto KB</title>
+    <!-- meta -->
+    <meta
+      content="Yuuto flow - yuuto project git implementation"
+      name="description"
+    />
+    <meta content="Yuuto-bot team" name="author" />
+    <meta content="Yuuto CB bot git tutorial" name="keywords" />
+    <!-- links -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="../../media/styles/main.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="https://iamdeja.github.io/yuuto-docs" rel="canonical" />
+    <!-- platforms -->
+    <meta content="#ffffff" name="theme-color" />
+    <!-- Scripts -->
+    <!--script defer="defer" src="../../media/scripts/main.js"></script-->
+    <script src="https://cdn.jsdelivr.net/npm/@gitgraph/js"></script>
+  </head>
+
+  <body
+    class="home t-yuuto"
+    current-page="git-flow"
+    subcategory="knowledgebase"
+  >
+    <!-- Header -->
+    <header class="c-gh u-relative u-fit--w u-of--h">
+      <div class="u-wrapper u-margin--c u-padding-24-90--h">
+        <div class="header-content">
+          <a class="header-logo" href="https://iamdeja.github.io/yuuto-docs">
+            <img
+              alt="yuuto's profile picture"
+              src="../../media/images/yuuto.png"
+            />
+          </a>
+          <nav class="header-nav u-flex u-flex-al--c u-flex-jc--sb u-of--h">
+            <ul class="header-nav__list u-of-x--a u-of-y--h u-nowrap">
+              <li class="header-nav__list--el">
+                <a href="../../">Home</a>
+              </li>
+              <li class="header-nav__list--el">
+                <a href="../git-tutorial">Git tutorial</a>
+              </li>
+              <li class="header-nav__list--el">
+                <a href="">Yuuto flow</a>
+              </li>
+              <li class="header-nav__list--el">
+                <a href="../../milestones/">Milestones</a>
+              </li>
+              <li class="header-nav__list--el">
+                <a href="../../developers/">Developers</a>
+              </li>
+              <li class="header-nav__list--el">
+                <a href="https://github.com/Yuuto-Project/yuuto-bot">GitHub</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header-button">
+            <a href="https://github.com/Yuuto-Project/yuuto-bot"
+              >View the repo</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="c-articlepage" role="main">
+      <div class="u-wrapper u-padding-24 u-padding-24-90--h u-margin--c">
+        <nav aria-label="breadcrumbs" class="c-breadcrumbs u-fit--w">
+          <ol class="c-breadcrumbs__list">
+            <li class="u-inline-block">
+              <a class="c-breadcrumbs__list--link" href="../../">Home</a>
+            </li>
+            <li class="u-inline-block">
+              <a class="c-breadcrumbs__list--link" href="../">Knowledgebase</a>
+            </li>
+            <li class="u-inline-block">Yuuto flow</li>
+          </ol>
+        </nav>
+        <header class="c-article-header">
+          <h1 class="artic-title">Tap into the codestream</h1>
+        </header>
+        <article class="c-article u-inline-block">
+          <h3>Every project needs a workflow</h3>
+          <p>
+            There are various types of git workflows out there, and a lot of
+            arguments over which one is "superior" to the others. However, they
+            all have different usage cases, and mostly depend on the preferences
+            and habits of teams. We will be using our own workflow, which is
+            somewhat of a hybrid between the
+            <a
+              href="https://www.endoflineblog.com/oneflow-a-git-branching-model-and-workflow"
+              >One Flow</a
+            >
+            and
+            <a href="https://nvie.com/posts/a-successful-git-branching-model/"
+              >Git Flow</a
+            >
+            models.
+          </p>
+          <h3>Getting started with Yuuto flow</h3>
+          <p>
+            Before we get into reviewing the workflow, it is crucial that you
+            already understand the branching concept in git. All that follows is
+            based on these concepts of branching, so if you aren't really sure
+            what that is, check <a href="">this</a> out.
+          </p>
+          <br />
+          <p>
+            The goal of Yuuto flow is to maintain high standards of quality and
+            stability of the deployed bot, as it should integrate seamlessly
+            with the campers and daily activities in the server. The
+            <code>master</code> branch is where deployed code for Yuuto is
+            located on, therefore all code in the <code>master</code> branch
+            should be rigorously tested and deployable. Should anybody want to
+            host their own copy of Yuuto, <code>master</code> is where they
+            should pull it from.
+          </p>
+          <blockquote class="c-quote">
+            All code in the <code>master</code> branch should be rigorously
+            tested and deployable.
+          </blockquote>
+          <p>
+            If <code>master</code> has to contain pre-tested code, another long
+            term branch is needed to contain the pre-production code. This
+            branch is known as <code>develop</code> and is where all new
+            implementations and features get combined for testing before
+            production. In turn, <code>develop</code> implements code from
+            <code>feature</code> branches, which is where most of the action and
+            new additions are being worked on.
+          </p>
+          <h3>Feature branches</h3>
+          <h3>Develop</h3>
+          <h3>Master</h3>
+          <h3>Release branches</h3>
+          <h3>Hotfix branches</h3>
+        </article>
+        <nav class="c-article-nav u-float--r u-relative">
+          <h2 class="c-article-nav__title">Knowledgebase</h2>
+          <ul class="c-article-nav__list">
+            <li class="u-relative">
+              <a href="../git-tutorial">Git tutorial</a>
+            </li>
+            <li class="u-relative">
+              <a href="#">Yuuto flow</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="c-global-footer"></footer>
+
+    <!-- JQuery -->
+    <script
+      crossorigin="anonymous"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    ></script>
+  </body>
+</html>
