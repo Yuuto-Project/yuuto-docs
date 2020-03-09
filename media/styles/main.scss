@@ -994,9 +994,9 @@ body {
       padding: 4px 0;
       position: relative;
       &::before {
-        @extend .u-pos-y-center;
         position: absolute;
         left: 0;
+        top: 0.75rem;
         width: 4px;
         height: 4px;
         content: "";
