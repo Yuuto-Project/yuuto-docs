@@ -27,8 +27,7 @@ $yoichipurple: #8546be;
   --c-text--reverse: #717485;
   --c-bg--reverse: #f5f5f5;
   --c-spot--reverse: #fff;
-  --c-spot--alt: #18c164;
-  --c-spot--text: #0fa954;
+  --c-lime--subtle: rgba(43, 185, 192, 0.1);
   //--c-gradient: linear-gradient(90deg, var(--c-spotlight), var(--c-limelight));
   --c-gradient: linear-gradient(
     90deg,
@@ -723,8 +722,8 @@ body {
 #progressbar {
   position: sticky;
   top: 0;
-  height: 5px;
   width: 0;
+  height: 5px;
   background: var(--c-gradient);
 }
 
@@ -978,7 +977,7 @@ body {
     }
   }
 
-  em {
+  b {
     background-color: rgba(43, 185, 192, 0.1);
   }
 
@@ -989,23 +988,37 @@ body {
   }
 
   ul {
-    list-style: square inside;
+    list-style: none;
+    margin-left: 30px;
+    li {
+      padding: 4px 0;
+      position: relative;
+      &::before {
+        @extend .u-pos-y-center;
+        position: absolute;
+        left: 0;
+        width: 4px;
+        height: 4px;
+        content: "";
+        background-color: $bodytext;
+      }
+    }
   }
 
   .c-quote {
     font-family: "Montserrat", "Roboto", sans-serif;
     font-size: 1.5rem;
-    color: var(--c-text--reverse);
     max-width: 650px;
     margin: auto;
     padding: 30px;
+    color: var(--c-text--reverse);
   }
 }
 
 .c-article-nav {
-  width: 100%;
-  top: 35px;
   position: sticky;
+  top: 35px;
+  width: 100%;
 
   @media only screen and (min-width: $dtbreak) {
     width: 300px;
@@ -1034,8 +1047,8 @@ body {
 
         //@extend .u-pos-y-center;
 
-        left: 0;
         top: 0.5rem;
+        left: 0;
         width: 4px;
         height: 4px;
         content: "";
@@ -1053,9 +1066,11 @@ body {
 
       ul li {
         padding: 2px 0;
+
         &::before {
           content: "- ";
         }
+
         &:last-child {
           padding-bottom: 0;
         }
@@ -1213,4 +1228,48 @@ body[subcategory="events"] {
   .c-breadcrumbs {
     margin-bottom: 0;
   }
+}
+
+.c-annotations {
+  position: absolute;
+  left: 10px;
+  visibility: hidden;
+  width: 100%;
+  margin: 10px 0;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  background-color: var(--c-lime--subtle);
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      background-color: var(--c-lime--subtle);
+    }
+  }
+
+  .annotation {
+    display: none;
+    &.is-active {
+      display: block;
+    }
+  }
+
+  &.is-active {
+    left: 0;
+    visibility: visible;
+    opacity: 100%;
+  }
+}
+
+.has-annotation {
+  &:hover {
+    cursor: help;
+    background-color: var(--c-lime--subtle);
+  }
+}
+
+em {
+  font-weight: 500;
 }
