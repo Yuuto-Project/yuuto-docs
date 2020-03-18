@@ -28,35 +28,45 @@ for (const annotation of annotationRoots) {
   ]);
 }
 
+// render element inactive
+const makeInactive = element => {
+  element.classList.remove("is-active");
+};
+
+// render element active
+const makeActive = element => {
+  element.classList.add("is-active");
+};
+
 // hides the annotation on scroll
-const stopOnScroll = element => {
+const hideAnnotationOnScroll = element => {
   document.addEventListener("scroll", () => {
-    annotationLocation.classList.remove("is-active");
+    makeInactive(annotationLocation);
     setTimeout(() => {
-      element.classList.remove("is-active");
+      makeInactive(element);
     }, 300);
     annotationIsActive = false;
   });
 };
 
 // checks if an annotation is already being displayed
-const isAnnotationActive = () => {
+const setAnnotationStatus = () => {
   if (annotationIsActive) {
     const activeAnnotation = document.getElementsByClassName(
       "annotation is-active"
     )[0];
-    activeAnnotation.classList.remove("is-active");
+    makeInactive(activeAnnotation);
   } else {
     annotationIsActive = true;
-    annotationLocation.classList.add("is-active");
+    makeActive(annotationLocation);
   }
 };
 
 // triggers the annotation events
 annotations.forEach(annotation => {
   annotation[0].addEventListener("mouseenter", () => {
-    isAnnotationActive();
-    annotation[1].classList.add("is-active");
-    stopOnScroll(annotation[1]);
+    setAnnotationStatus();
+    makeActive(annotation[1]);
+    hideAnnotationOnScroll(annotation[1]);
   });
 });

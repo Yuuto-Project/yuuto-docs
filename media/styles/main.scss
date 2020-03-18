@@ -502,6 +502,14 @@ $yoichipurple: #8546be;
   text-decoration: none;
 }
 
+.o-codeblock {
+  display: block;
+  overflow-x: auto;
+  font-size: 1rem;
+  @media screen and (min-width: 700px) {
+    padding: 10px;
+  }
+}
 /* CODE START */
 
 /* == PRECODE == */
@@ -699,7 +707,9 @@ h3 {
 }
 
 code {
-  font-family: monospace;
+  font-family: "Space Mono", monospace;
+  font-size: .875rem;
+  line-height: 1.25;
   padding: 2px 3px;
   border-radius: 2px;
   background-color: var(--c-bg--reverse);

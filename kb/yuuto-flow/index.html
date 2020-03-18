@@ -15,7 +15,7 @@
     <meta content="Yuuto CB bot git tutorial" name="keywords" />
     <!-- links -->
     <link
-      href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@400;700&family=Space+Mono&display=swap"
       rel="stylesheet"
     />
     <link
@@ -27,8 +27,11 @@
     <!-- platforms -->
     <meta content="#ffffff" name="theme-color" />
     <!-- Scripts -->
-    <!--script defer="defer" src="../../media/scripts/main.js"></script-->
-    <script src="https://cdn.jsdelivr.net/npm/@gitgraph/js"></script>
+    <script
+      defer=""
+      src="../../media/scripts/main.js"
+      type="text/JavaScript"
+    ></script>
   </head>
 
   <body
@@ -95,7 +98,7 @@
           <h1 class="artic-title">Tap into the codestream</h1>
         </header>
         <article class="c-article u-inline-block">
-          <h3>Every project needs a workflow</h3>
+          <h3 id="workflow">Every project needs a workflow</h3>
           <p>
             There are various types of git workflows out there, and a lot of
             arguments over which one is "superior" to the others. However, they
@@ -112,12 +115,17 @@
             >
             models.
           </p>
-          <h3>Getting started with Yuuto flow</h3>
+          <h3 id="getting-started">Getting started with Yuuto flow</h3>
           <p>
             Before we get into reviewing the workflow, it is crucial that you
             already understand the branching concept in git. All that follows is
             based on these concepts of branching, so if you aren't really sure
-            what that is, check <a href="">this</a> out.
+            what that is, check
+            <a
+              href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"
+              >this</a
+            >
+            out.
           </p>
           <br />
           <p>
@@ -143,11 +151,138 @@
             <code>feature</code> branches, which is where most of the action and
             new additions are being worked on.
           </p>
-          <h3>Feature branches</h3>
-          <h3>Develop</h3>
-          <h3>Master</h3>
-          <h3>Release branches</h3>
-          <h3>Hotfix branches</h3>
+          <h3 id="feature">Feature branches</h3>
+          <p>
+            Feature branches are where the fun happens. This where developers
+            will work alone or in smaller teams and develop new features for the
+            bot. The branches are based on the <code>develop</code> branch, and
+            once completed, are merged back via pull requests.
+          </p>
+          <p>
+            Feature branches can be created by anyone, and should always be
+            started from the latest version of <code>develop</code>. These
+            branches should reside under the <code>feature</code> branch folder,
+            and have a descriptive name. Before starting a
+            <code>feature</code> branch, check with other developers to make
+            sure nobody else is already working on such feature.
+          </p>
+          <h4>Procedure</h4>
+          <pre><code class="o-codeblock"># Initial creation
+$ git checkout -b feature/f-name develop<br/>
+# When ready to merge back
+$ git push origin feature/f-name</code></pre>
+          <br />
+          <p>
+            After the feature has been pushed to remote, open up a pull request
+            to merge to <code>develop</code>. Work out any fixes until the PR is
+            approved (2 reviews). Release branches are squashed and then merged.
+            Once the feature branch has been integrated, don't forget to delete
+            it.
+          </p>
+          <h3 id="develop">Develop</h3>
+          <p>
+            The brain of the whole operation. This is the branch that contains
+            the mishmash of code, and is used to check how all different pieces
+            work together before deploying it. Features branch out of it, and
+            merge back in it. Releases are also based on specific commits to the
+            <code>develop</code> branch.
+          </p>
+          <p>
+            One shouldn't commit to <code>develop</code> directly, as both
+            features and <a href="#hotfix">hotfixes</a> flow into it from the
+            sides. Once an update is deployed to <code>master</code>,
+            <code>develop</code> gets also updated with the latest code from
+            master, while keeping advancements in other areas. That's the goal
+            of develop: test code and continue work without impacting release
+            cycles.
+          </p>
+          <h3 id="master">Master</h3>
+          <p>
+            The <code>master</code> branch follows a simple, yet very important
+            rule: all code in it should be bug-free and deployable. Anybody
+            wishing to obtain a stable and working copy of Yuuto, should clone
+            from this branch.
+          </p>
+          <br />
+          <p>
+            Code should never be committed to <code>master</code> directly.
+            Instead, code will be integrated to it from a
+            <code>release</code> branch via pull requests. Why not from
+            <code>develop</code> directly? For the very simple reason that
+            <code>develop</code> should not be limited by the progress being
+            made on <code>master</code>. Development and features can continue
+            to be added even if review or changes fro deployment take longer
+            than expected.
+          </p>
+          <p>
+            Once <code>master</code> has received its update,
+            <code>develop</code> branch is updated and rebased on top of the
+            latest release, and work continues.
+          </p>
+          <h3 id="release">Release branches</h3>
+          <p>
+            Before code is deployed to <code>master</code>, it goes through a
+            <code>release</code> branch. The branches are created when preparing
+            for a release, and deleted once a release has been finalised. Their
+            sole purpose is not to hinder development, as described in the
+            <a href="#master">master</a> section.
+          </p>
+          <br />
+          <p>
+            Releases are created off the <code>develop</code> branch, and
+            anybody can start a <code>release</code> branch. Once they are
+            created, only minor polishes should be made to it, to prepare for
+            smooth release integration via pull requests. All
+            <code>release</code> branches should go under the
+            <code>release</code> folder, and once ready to be released, they
+            should be <b class="has-annotation" id="tag">tagged</b> with the
+            release number.
+          </p>
+          <p>
+            Release branches can be initiated from the current stage of develop,
+            or from a specific commit, in which case use the hash corresponding
+            to the particular commit when creating a branch.
+          </p>
+          <h4 id="release-procedure">Procedure</h4>
+          <pre><code class="o-codeblock"># Initial creation
+$ git checkout -b release/v-number develop-hash // hash is optional<br/>
+# When ready to release
+$ git tag v-number // tag release with version number
+$ git push --tags origin release/v-number</code></pre>
+          <br />
+          <p>
+            After the release has been pushed to remote with the appropriate
+            tag, open up a pull request to merge to <code>master</code>. Release
+            branches are squashed and then merged. Once the release branch has
+            been integrated, don't forget to delete it.
+          </p>
+          <h3 id="hotfix">Hotfix branches</h3>
+          <p>
+            Sometimes we screw up. When we do, we need to fix the issues.
+            Hotfixes are needed to fix things when the original branch has
+            already been deleted, such as features or releases. Hopefully, if
+            needed, they will be implemented to <code>develop</code>, however if
+            the issue impacts <code>master</code> or releases have been started,
+            the hotfix will first be applied to master, and
+            <code>develop</code> will get the fix when it gets the latest
+            updates from <code>master</code>.
+          </p>
+          <br />
+          <p>
+            Multiple hotfixes may happen concurrently, there may be pending
+            hotfixes for both <code>master</code> and <code>develop</code>.
+            Which branch(es) to apply the hotfix to will depend on the issue
+            needing to be fixed. A feature hotfix can live together with a
+            deployment hotfix, thus each hotfix should serve the purpose of
+            fixing only one issue at a time.
+          </p>
+          <p>
+            Hotfixes should make use of tags if they are applied to
+            <code>master</code>, in which case they follow the same procedure as
+            <a href="#release-procedure">release</a> branches do. They are
+            implemented via squash and merge pull-requests and deleted after
+            integration.
+          </p>
         </article>
         <nav class="c-article-nav u-float--r u-relative">
           <h2 class="c-article-nav__title">Knowledgebase</h2>
@@ -157,8 +292,24 @@
             </li>
             <li class="u-relative">
               <a href="#">Yuuto flow</a>
+              <ul>
+                <li><a href="#workflow">Workflows</a></li>
+                <li><a href="#getting-started">Getting started</a></li>
+                <li><a href="#feature">Features</a></li>
+                <li><a href="#develop">Develop</a></li>
+                <li><a href="#master">Master</a></li>
+                <li><a href="#release">Releases</a></li>
+                <li><a href="#hotfix">Hotfixes</a></li>
+              </ul>
             </li>
           </ul>
+          <div class="c-annotations">
+            <div class="annotation --tag">
+              In Git, tagging is used to make it easier to find a specific
+              commit, and also to signal milestones in the project. Releases
+              should always include a release tag.
+            </div>
+          </div>
         </nav>
       </div>
     </main>
