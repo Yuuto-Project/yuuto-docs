@@ -905,7 +905,7 @@ body {
   @media screen and (min-width: $dtbreak) {
     &__info {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
 
       iframe {
         padding-top: 0;
