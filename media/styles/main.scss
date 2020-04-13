@@ -30,9 +30,9 @@ $yoichipurple: #8546be;
   --c-lime--subtle: rgba(43, 185, 192, 0.1);
   //--c-gradient: linear-gradient(90deg, var(--c-spotlight), var(--c-limelight));
   --c-gradient: linear-gradient(
-    90deg,
-    rgba(253, 187, 228, 1) 15%,
-    rgba(43, 185, 192, 1) 100%
+                  90deg,
+                  rgba(253, 187, 228, 1) 15%,
+                  rgba(43, 185, 192, 1) 100%
   );
 }
 
@@ -897,9 +897,9 @@ body {
   }
 
   iframe {
-    padding-top: 30px;
-    margin: auto;
     display: block;
+    margin: auto;
+    padding-top: 30px;
   }
 
   @media screen and (min-width: $dtbreak) {
@@ -908,10 +908,10 @@ body {
       justify-content: space-between;
 
       iframe {
-        padding-top: 0;
-        margin: 0;
         position: relative;
         top: -118px;
+        margin: 0;
+        padding-top: 0;
       }
 
       .sect-content {
@@ -1311,4 +1311,35 @@ body[subcategory="events"] {
 
 em {
   font-weight: 500;
+}
+
+.c-release-entry {
+  &__title {
+    display: inline-block;
+  }
+
+  &__date {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid var(--c-text);
+  }
+
+  &__notes {
+    margin-top: 10px;
+    padding-left: 20px;
+
+    .add::before {
+      content: "+";
+      padding-right: 4px;
+    }
+  }
+
+  &__ext {
+    margin-top: 10px;
+    font-size: .75rem;
+    display: inline-block;
+    span {
+      text-decoration: underline;
+    }
+  }
 }
